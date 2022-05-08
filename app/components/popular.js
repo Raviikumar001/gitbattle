@@ -4,6 +4,8 @@ import PropTypes from  'prop-types'
 import Card from "./card";
 import Loading from "./loading";
 import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle } from 'react-icons/fa'
+
+import Tooltip from "./tooltip";            
   function LanguageNav ({selected, onUpdateLanguage})
   {
     const languages = ['All', 'JavaScript', 'Java', 'CSS', 'Python']
@@ -56,11 +58,15 @@ import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle } from 'react-icons
                         > 
 
 
-<ul className="card-list">
+            <ul className="card-list">
                         <li>
+                        <Tooltip text="Github username">
                             <FaUser color="rgb(255,191,116)" size={22}/>
                             <a href={`https://github.com/${login}`}> {login}</a>
+
+                        </Tooltip>
                         </li>
+
                         <li>
                           <FaStar color='rgb(255,215,0)' size={22} />
                           {stargazers_count.toLocaleString()} stars
