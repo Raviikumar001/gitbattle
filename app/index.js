@@ -5,7 +5,7 @@ import Battle from './components/Battle'
 import './index.css'
 import Popular from './components/popular'
 class App extends React.Component{
-    //hello
+    //hello app
 
     render()
     {
