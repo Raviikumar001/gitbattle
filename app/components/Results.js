@@ -9,6 +9,10 @@ import { battle } from '../utils/api';
 import  Card from './card'
 import Loading from './loading';
 import Tooltip from './tooltip';
+
+import queryString from 'query-string'
+
+import {Link} from 'react-router-dom'
 function ProfileList ({ profile }) {
     return (
       <ul className='card-list'>
@@ -66,7 +70,7 @@ export default class Results extends React.Component{
      }
 
     componentDidMount() {
-        const { playerOne, playerTwo } = this.props
+        const { playerOne, playerTwo } = queryString.parse(location.search)
 
         battle([ playerOne, playerTwo]).then((players)=> {
             this.setState({
@@ -96,7 +100,7 @@ export default class Results extends React.Component{
 
         if(error)
         {
-            return <p class="center-text error">{error}</p>
+            return <p className="center-text error">{error}</p>
         }
         return(
 
@@ -132,11 +136,11 @@ export default class Results extends React.Component{
 
                 
                     </div>
-                    <button 
-                    onClick={this.props.onReset}
+                    <Link 
+                    to='/battle'
                     className='btn dark-btn btn-space'>
                         Reset
-                    </button>
+                    </Link>
 
             </React.Fragment>
         
@@ -145,8 +149,3 @@ export default class Results extends React.Component{
 
 }
 
- Results.propTypes={
-    playerOne: PropTypes.string.isRequired,
-    playerTwo: PropTypes.string.isRequired,
-    onReset:   PropTypes.func.isRequired
-}

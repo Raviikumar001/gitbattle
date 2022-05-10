@@ -5,12 +5,15 @@ import Battle from './components/Battle'
 import './index.css'
 import Popular from './components/popular'
 import Nav from './components/Nav'
+
 import { ThemeProvider } from './contexts/theme'
 import {
     BrowserRouter,
     Routes,
     Route,
+    
   } from "react-router-dom";
+import Results from './components/Results'
 
 
 
@@ -42,10 +45,13 @@ class App extends React.Component{
             <div className={this.state.theme}>
                 <div className='container'>
                 <Nav />
+                
                 <Routes>
-                <Route exact path='/' element={ <Popular />} /> 
+                <Route path='/' element={ <Popular />} /> 
                 <Route path='/battle' element={<Battle />} />
+                <Route path='/battle/results' element={<Results />} />
                 </Routes>
+                
                 </div>
             </div>
             </ThemeProvider>
