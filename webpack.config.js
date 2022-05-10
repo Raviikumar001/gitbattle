@@ -6,7 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
      entry: './app/index.js',
      output: {
          path: path.resolve(__dirname, "dist"),
-         filename: 'index_bundle.js'
+         filename: 'index_bundle.js',
+         publicPath: '/'
      },
        
      module: {
@@ -20,5 +21,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
          new HtmlWebpackPlugin({
              template: 'app/index.html'
          })
-     ]
+     ],
+     devServer: {
+         historyApiFallback: true
+     }
  }

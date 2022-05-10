@@ -8,6 +8,10 @@ export default function Nav()
         <ThemeConsumer>
          { ({theme, toggleTheme})=> (
              <nav className='row space-between'>
+             <ul>
+                 
+             </ul>
+
              <button
              style={{fontSize: 30}}
              className='btn-clear'

@@ -6,6 +6,14 @@ import './index.css'
 import Popular from './components/popular'
 import Nav from './components/Nav'
 import { ThemeProvider } from './contexts/theme'
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+  } from "react-router-dom";
+
+
+
 class App extends React.Component{
 
     constructor(props)
@@ -28,14 +36,23 @@ class App extends React.Component{
 
          
         return(
+            <BrowserRouter>
+            
             <ThemeProvider value={this.state}> 
             <div className={this.state.theme}>
                 <div className='container'>
                 <Nav />
-                <Battle />
+                <Routes>
+                <Route exact path='/' element={ <Popular />} /> 
+                <Route path='/battle' element={<Battle />} />
+                </Routes>
                 </div>
             </div>
             </ThemeProvider>
+=
+
+          
+            </BrowserRouter>
         )
     }
 }
