@@ -108,27 +108,34 @@ import Tooltip from "./tooltip";
 
 export default  class Popular extends React.Component{
 
-    constructor(props)
-    {
-       super(props)
 
-       this.state= {
-           selectedLanguage: 'All',
-           repos: {},
-           error: null
-       }
+    state= {
+        selectedLanguage: 'All',
+        repos: {},
+        error: null
+    }
+
+    // constructor(props)
+    // {
+    //    super(props)
+
+    //    this.state= {
+    //        selectedLanguage: 'All',
+    //        repos: {},
+    //        error: null
+    //    }
        
 
-       this.updateLanguage = this.updateLanguage.bind(this)
-       this.isLoading = this.isLoading.bind(this)
+    //    this.updateLanguage = this.updateLanguage.bind(this)
+    //    this.isLoading = this.isLoading.bind(this)
 
-    }
+    // }
      componentDidMount()
      {
          this.updateLanguage(this.state.selectedLanguage)
      } 
 
-    updateLanguage(selectedLanguage)
+    updateLanguage =(selectedLanguage)=>
     {
         this.setState( {
             selectedLanguage,
@@ -160,7 +167,7 @@ export default  class Popular extends React.Component{
     }
 
 
-     isLoading()
+     isLoading= ()=>
      {
          const { selectedLanguage, error, repos} = this.state
          return !repos[selectedLanguage] && error === null
