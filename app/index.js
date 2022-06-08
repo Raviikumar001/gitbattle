@@ -13,6 +13,7 @@ import {
     Route,
     
   } from "react-router-dom";
+import { useState,useEffect } from 'react'
 // import Results from './components/Results'
 
 
@@ -22,61 +23,79 @@ const Battle = React.lazy(() =>import('./components/Battle'))
 const Results = React.lazy( ()=>import('./components/Results'))
 
 
-class App extends React.Component{
+
+function App()
+{
+    const [theme,setTheme] = useState('light')
+    const toggleTheme = ()=> setTheme( (theme)=> theme === 'light' ?'dark':'light')
+      
+    return(
+        <BrowserRouter>
+        
+        <ThemeProvider value={theme}> 
+        <div className={theme}>
+            <div className='container'>
+            <Nav  toggleTheme={toggleTheme} />
+            <React.Suspense fallback={<Loading />}>
+            <Routes>
+            <Route path='/' element={ <Popular />} /> 
+            <Route path='/battle' element={<Battle />} />
+            <Route path='/battle/results' element={<Results />} />
+            </Routes>
+            </React.Suspense>
+            </div>
+        </div>
+        </ThemeProvider>
 
 
-    state={
-        theme: 'light',
-        toggleTheme: ()=> {
-            this.setState( ({ theme})=> ({
-                theme: theme === 'light' ? 'dark' : 'light'
-            }))
-        } 
-   }
+      
+        </BrowserRouter>
+    )
+}
 
-    // constructor(props)
-    // { 
-    //     super(props)
-    //     this.state={
-    //             theme: 'light',
-    //             toggleTheme: ()=> {
-    //                 this.setState( ({ theme})=> ({
-    //                     theme: theme === 'light' ? 'dark' : 'light'
-    //                 }))
-    //             }
-    //     }
 
-    // }
-    //hello app
+// class App extends React.Component{
 
-    render()
-    {
+
+//     state={
+//         theme: 'light',
+//         toggleTheme: ()=> {
+//             this.setState( ({ theme})=> ({
+//                 theme: theme === 'light' ? 'dark' : 'light'
+//             }))
+//         } 
+//    }
+
+    
+
+//     render()
+//     {
 
          
-        return(
-            <BrowserRouter>
+//         return(
+//             <BrowserRouter>
             
-            <ThemeProvider value={this.state}> 
-            <div className={this.state.theme}>
-                <div className='container'>
-                <Nav />
-                <React.Suspense fallback={<Loading />}>
-                <Routes>
-                <Route path='/' element={ <Popular />} /> 
-                <Route path='/battle' element={<Battle />} />
-                <Route path='/battle/results' element={<Results />} />
-                </Routes>
-                </React.Suspense>
-                </div>
-            </div>
-            </ThemeProvider>
-=
+//             <ThemeProvider value={this.state}> 
+//             <div className={this.state.theme}>
+//                 <div className='container'>
+//                 <Nav />
+//                 <React.Suspense fallback={<Loading />}>
+//                 <Routes>
+//                 <Route path='/' element={ <Popular />} /> 
+//                 <Route path='/battle' element={<Battle />} />
+//                 <Route path='/battle/results' element={<Results />} />
+//                 </Routes>
+//                 </React.Suspense>
+//                 </div>
+//             </div>
+//             </ThemeProvider>
+// =
 
           
-            </BrowserRouter>
-        )
-    }
-}
+//             </BrowserRouter>
+//         )
+//     }
+// }
 
 ReactDOM.render( <App/>,
 document.getElementById('app'))

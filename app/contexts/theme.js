@@ -1,9 +1,9 @@
 import React from 'react'
 
-const { Consumer, Provider} = React.createContext()
+const ThemeContext = React.createContext()
 
+ export default ThemeContext
 
+ export const ThemeConsumer = ThemeContext.Consumer
 
- export const ThemeConsumer = Consumer
-
- export const ThemeProvider = Provider
+ export const ThemeProvider = ThemeContext.Provider
